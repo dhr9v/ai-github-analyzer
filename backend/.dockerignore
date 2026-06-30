@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Data
+data/cloned_repos/
+reviews.db
+*.sqlite3
+
+# Docs
+docs/

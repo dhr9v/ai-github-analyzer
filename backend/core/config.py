@@ -9,13 +9,6 @@ class Settings(BaseSettings):
     )
 
     GEMINI_API_KEY: str = ""
-    DATABASE_URL: str = "sqlite:///./reviews.db"
-    JWT_SECRET: str = "8f5b84931a24d081f9a2e32a688bcae52467fd8a3e74287d60e6e7cb61c36b8e"
-    JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
-
-    CELERY_BROKER_URL: str = "redis://localhost:6379/0"
-    CELERY_RESULT_BACKEND: str = "redis://localhost:6379/0"
 
     # Directory where repositories will be cloned
     CLONE_DIR: str = os.path.join(

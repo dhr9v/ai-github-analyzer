@@ -4,6 +4,8 @@ from typing import List, Optional, Dict, Any
 class AnalyzeRequest(BaseModel):
     url: str
     branch: Optional[str] = "main"
+    # Note: In our 100% stateless (BYOK) architecture, passing the API key per-request 
+    # is required since we have no database to centralize or store user secrets.
     gemini_api_key: str
     gemini_model: Optional[str] = "gemini-2.5-flash"
     github_pat: Optional[str] = None

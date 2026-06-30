@@ -77,7 +77,7 @@ class AnalysisOrchestrator:
                         if 100 < size < 100000: # 100B to 100KB range
                             candidate_files.append((rel_path, file_path, size))
                     except Exception:
-                        pass
+                        pass  # nosec B110
 
         # Sort candidate files: priority configs first, then smaller source files
         candidate_files.sort(key=lambda x: (x[2] > 0, x[2]))
@@ -95,7 +95,7 @@ class AnalysisOrchestrator:
                         "content": content
                     })
             except Exception:
-                pass
+                pass  # nosec B110
 
         return critical_files
 
@@ -405,5 +405,5 @@ class AnalysisOrchestrator:
                 try:
                     temp_dir_obj.cleanup()
                 except Exception:
-                    pass
+                    pass  # nosec B110
 

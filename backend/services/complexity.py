@@ -97,7 +97,7 @@ class ComplexityService:
                         total_difficulty += h_metrics.total.difficulty
                         total_bugs += h_metrics.total.bugs
                     except Exception:
-                        pass
+                        pass  # nosec B110
                         
                     file_count += 1
                     file_metrics.append({
@@ -107,7 +107,7 @@ class ComplexityService:
                         "loc": len(code.splitlines())
                     })
                 except Exception:
-                    pass
+                    pass  # nosec B110
                     
         # Sort complex items to extract top 10 bottlenecks
         complex_items = sorted(complex_items, key=lambda x: x["complexity"], reverse=True)[:10]

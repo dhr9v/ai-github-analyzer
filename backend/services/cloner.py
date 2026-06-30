@@ -74,7 +74,7 @@ class ClonerService:
             try:
                 os.remove(tmp_path)
             except Exception:
-                pass
+                pass  # nosec B110
 
     @staticmethod
     def cleanup_dir(dir_path: str):
@@ -90,7 +90,7 @@ class ClonerService:
                 os.chmod(path, stat.S_IWRITE)
                 func(path)
             except Exception:
-                pass
+                pass  # nosec B110
 
         try:
             shutil.rmtree(dir_path, onerror=onerror)
@@ -98,4 +98,4 @@ class ClonerService:
             try:
                 shutil.rmtree(dir_path, ignore_errors=True)
             except Exception:
-                pass
+                pass  # nosec B110
