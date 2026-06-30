@@ -14,12 +14,18 @@ app = FastAPI(
 import os
 
 # CORS configuration for local/hosted UI integration
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+# We use allow_credentials=False so that wildcard origins work correctly.
+# Our stateless BYOK architecture uses no cookies or session tokens,
+# so credentials mode is not needed.
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
+# Strip whitespace and trailing slashes from each origin
+allowed_origins = [o.strip().rstrip("/") for o in allowed_origins_env.split(",")]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
