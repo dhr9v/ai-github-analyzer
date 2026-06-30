@@ -1,82 +1,290 @@
-# AI Code Reviewer
+# Seven AI
 
-A stateless code review tool that analyzes GitHub repositories using Google's Gemini API.
+> **AI-powered software quality platform for intelligent GitHub repository analysis.**
 
-## Overview
-This tool performs deep static analysis on Python codebases and uses AI to generate actionable insights. It operates entirely without a database—your API keys, analysis history, and chat logs are stored securely in your browser's local storage.
+Seven AI combines industry-standard static analysis with Google's Gemini AI to perform comprehensive code reviews, detect security vulnerabilities, evaluate maintainability, and provide actionable recommendations—all through a modern, stateless web application.
 
-## Features
+Unlike traditional AI code reviewers, Seven AI first performs deterministic code analysis using professional developer tools before allowing Gemini to reason over the results, producing more accurate and context-aware insights.
+
+---
+
+## ✨ Features
 
 ### 🔍 Deep Static Analysis
-- **Complexity Metrics**: Uses `radon` to compute Cyclomatic Complexity (CC), Maintainability Index (MI), and Halstead metrics to identify overly complex functions.
-- **Security Audits**: Integrates `bandit` to scan AST nodes and flag common security vulnerabilities.
-- **Linting & Style Checks**: Runs `ruff` to enforce best practices and clean code standards.
 
-### 🧠 AI-Powered Insights
-- **Executive Summaries**: Leverages Gemini 2.5 to read your static analysis metrics and generate high-level summaries, strengths, and critical weaknesses.
-- **Actionable Refactoring**: Provides targeted refactoring recommendations based on the most complex files in the codebase.
-- **Health Scores**: Computes overall health, security, performance, maintainability, documentation, testing, and architecture scores (0-100 scale).
+Seven AI performs a complete audit of Python repositories using trusted open-source tooling.
 
-### 💬 Interactive AI Workspace
-- **Context-Aware Chat**: Chat directly with your codebase. The AI knows the repository's metrics, security issues, and logic flow, allowing you to ask specific architectural or debugging questions.
-- **Test Suite Generator**: Automatically writes `pytest` unit tests for the most complex methods identified during the audit.
-- **Documentation Generator**: Automatically generates technical documentation and docstrings for complex classes and functions.
+- **Complexity Analysis**
+  - Cyclomatic Complexity (CC)
+  - Maintainability Index (MI)
+  - Halstead Metrics
+  - Complex function detection using **Radon**
 
-### 📊 Dashboard & UI
-- **Local Search**: Press `/` to quickly fuzzy-search through all your audited repositories, files, detected issues, and complex methods.
-- **Issue Filtering**: Filter the audit findings by severity (Critical, Warning, Info) and category (Security, Performance, Bug, Style).
-- **Complexity Visualizations**: Interactive pie charts and metric boards to easily visualize maintainability grades across the codebase.
+- **Security Auditing**
+  - AST-based vulnerability scanning
+  - Common Python security issue detection
+  - Powered by **Bandit**
 
-### 📄 Exportable Reports
-- **On-the-Fly Generation**: Compiles the audit findings into downloadable reports instantly.
-- **Multiple Formats**: Export your code reviews as formatted PDFs, GitHub-ready Markdown, standalone HTML dashboards, or raw JSON payloads.
+- **Code Quality**
+  - Linting
+  - Style enforcement
+  - Best practice validation
+  - Powered by **Ruff**
 
-### 🔒 100% Stateless & Private
-- **Zero Database Setup**: No Supabase, PostgreSQL, or SQLite required.
-- **Local Storage**: All data, including your Gemini API key and audit history, stays exclusively in your browser's local storage.
-- **Secure Processing**: The backend only serves as a transient processing pipeline and never stores repository data on disk permanently.
+---
 
-## Tech Stack
-- **Frontend**: React, TypeScript, Tailwind CSS, Vite, Recharts, Lucide Icons
-- **Backend**: FastAPI, Python 3.12, GitPython, ReportLab (for PDF exports)
-- **AI/LLM**: Google GenAI SDK (Gemini 2.5)
+## 🧠 AI-Powered Repository Intelligence
 
-## Getting Started
+After collecting static analysis metrics, Gemini 2.5 generates intelligent repository insights.
 
-### Prerequisites
-- Node.js (v18+)
-- Python (3.12+)
-- A [Google Gemini API Key](https://aistudio.google.com/app/apikey)
+- Executive repository summaries
+- Architecture understanding
+- Code quality assessment
+- Refactoring recommendations
+- Performance observations
+- Maintainability analysis
+- Documentation suggestions
 
-### Local Development
+### Repository Health Scores
 
-1. **Clone the repository**
+Seven AI calculates scores across multiple categories.
+
+- 🟢 Overall Health
+- 🔒 Security
+- ⚡ Performance
+- 🧩 Maintainability
+- 📚 Documentation
+- ✅ Testing
+- 🏗️ Architecture
+
+---
+
+## 💬 Interactive AI Workspace
+
+Chat directly with your repository.
+
+Gemini understands:
+
+- repository structure
+- complexity metrics
+- detected security issues
+- maintainability reports
+- code relationships
+
+You can ask questions like:
+
+- "Which module should I refactor first?"
+- "Why is this repository difficult to maintain?"
+- "Explain this architecture."
+- "Generate tests for this class."
+- "Write documentation for these functions."
+
+---
+
+## 🧪 Automatic Code Generation
+
+Seven AI can automatically generate:
+
+- ✅ Pytest unit tests
+- ✅ Function documentation
+- ✅ Class docstrings
+- ✅ Refactoring suggestions
+
+---
+
+## 📊 Interactive Dashboard
+
+The dashboard provides an overview of your repository through interactive visualizations.
+
+Features include:
+
+- Repository health overview
+- Complexity distribution charts
+- Maintainability visualizations
+- Issue severity breakdown
+- Search across repositories
+- File explorer
+- Smart issue filtering
+
+Press **/** anywhere to instantly search repositories, files, issues, and complex methods.
+
+---
+
+## 📄 Export Reports
+
+Generate professional reports instantly.
+
+Supported formats:
+
+- PDF
+- Markdown
+- HTML
+- JSON
+
+Perfect for documentation, GitHub issues, audits, and sharing with teams.
+
+---
+
+## 🔒 Stateless & Privacy First
+
+Seven AI never stores your repositories permanently.
+
+- No database
+- No authentication
+- No cloud storage
+- No repository history stored on the server
+
+All user data—including:
+
+- Gemini API Key
+- Analysis history
+- Chat history
+- Preferences
+
+remains securely inside your browser's Local Storage.
+
+Repositories exist only during analysis and are immediately discarded afterwards.
+
+---
+
+# 🏗️ Architecture
+
+```text
+GitHub Repository
+        │
+        ▼
+ Repository Clone
+        │
+        ▼
+Static Analysis
+ ├── Ruff
+ ├── Bandit
+ └── Radon
+        │
+        ▼
+Repository Intelligence
+        │
+        ▼
+ Gemini 2.5
+        │
+        ▼
+Dashboard • Chat • Reports
+```
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide Icons
+
+## Backend
+
+- FastAPI
+- Python 3.12
+- GitPython
+- ReportLab
+
+## AI
+
+- Google Gemini 2.5
+- Google GenAI SDK
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+- Node.js 18+
+- Python 3.12+
+- Google Gemini API Key
+
+---
+
+## Installation
+
+### Clone the repository
+
 ```bash
 git clone https://github.com/dhr9v/ai-github-analyzer.git
 cd ai-github-analyzer
 ```
 
-2. **Start the Backend**
+---
+
+### Backend
+
 ```bash
 cd backend
+
 python -m venv venv
-# On Windows: venv\Scripts\activate
-# On Mac/Linux: source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+
 pip install -r requirements.txt
+
 uvicorn main:app --reload
 ```
-The API will be available at `http://localhost:8000`.
 
-3. **Start the Frontend**
+Backend runs on:
+
+```
+http://localhost:8000
+```
+
+---
+
+### Frontend
+
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
 
-## Usage
-Once running, navigate to the **Settings** tab in the UI to input your Gemini API Key. Then, go to the **Dashboard** and enter any public GitHub repository URL to begin an audit.
+Frontend runs on:
 
-## License
-MIT
+```
+http://localhost:5173
+```
+
+---
+
+# 📖 Usage
+
+1. Open Seven AI.
+2. Navigate to **Settings**.
+3. Enter your Gemini API Key.
+4. Go to **Dashboard**.
+5. Paste any public GitHub repository URL.
+6. Start the audit.
+7. Explore AI insights, repository health, interactive chat, and downloadable reports.
+
+---
+
+# 🎯 Why Seven AI?
+
+Traditional AI code reviewers rely almost entirely on LLMs.
+
+Seven AI combines deterministic static analysis with modern AI reasoning, allowing Gemini to understand real software metrics before making recommendations.
+
+This produces reviews that are more accurate, explainable, and actionable.
+
+---
+
+# 📜 License
+
+MIT License
