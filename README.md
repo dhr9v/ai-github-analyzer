@@ -3,18 +3,43 @@
 A stateless code review tool that analyzes GitHub repositories using Google's Gemini API.
 
 ## Overview
-This tool performs deep static analysis on Python codebases and uses AI to generate actionable insights. It operates entirely without a database—your API keys and analysis history are stored securely in your browser's local storage.
+This tool performs deep static analysis on Python codebases and uses AI to generate actionable insights. It operates entirely without a database—your API keys, analysis history, and chat logs are stored securely in your browser's local storage.
 
 ## Features
-- **Stateless Architecture**: Zero database setup required.
-- **Static Analysis Engine**: Leverages `radon`, `ruff`, and `bandit` to compute cyclomatic complexity, code maintainability, and security vulnerabilities.
-- **AI-Powered Insights**: Uses Gemini 2.5 to read your metrics and generate executive summaries, highlight strengths/weaknesses, and suggest refactoring.
-- **Interactive Chat & Generators**: Chat directly with your codebase context or ask the AI to generate missing unit tests and documentation.
-- **Exportable Reports**: Generate compiled PDF, Markdown, HTML, and JSON reports on the fly.
+
+### 🔍 Deep Static Analysis
+- **Complexity Metrics**: Uses `radon` to compute Cyclomatic Complexity (CC), Maintainability Index (MI), and Halstead metrics to identify overly complex functions.
+- **Security Audits**: Integrates `bandit` to scan AST nodes and flag common security vulnerabilities.
+- **Linting & Style Checks**: Runs `ruff` to enforce best practices and clean code standards.
+
+### 🧠 AI-Powered Insights
+- **Executive Summaries**: Leverages Gemini 2.5 to read your static analysis metrics and generate high-level summaries, strengths, and critical weaknesses.
+- **Actionable Refactoring**: Provides targeted refactoring recommendations based on the most complex files in the codebase.
+- **Health Scores**: Computes overall health, security, performance, maintainability, documentation, testing, and architecture scores (0-100 scale).
+
+### 💬 Interactive AI Workspace
+- **Context-Aware Chat**: Chat directly with your codebase. The AI knows the repository's metrics, security issues, and logic flow, allowing you to ask specific architectural or debugging questions.
+- **Test Suite Generator**: Automatically writes `pytest` unit tests for the most complex methods identified during the audit.
+- **Documentation Generator**: Automatically generates technical documentation and docstrings for complex classes and functions.
+
+### 📊 Dashboard & UI
+- **Local Search**: Press `/` to quickly fuzzy-search through all your audited repositories, files, detected issues, and complex methods.
+- **Issue Filtering**: Filter the audit findings by severity (Critical, Warning, Info) and category (Security, Performance, Bug, Style).
+- **Complexity Visualizations**: Interactive pie charts and metric boards to easily visualize maintainability grades across the codebase.
+
+### 📄 Exportable Reports
+- **On-the-Fly Generation**: Compiles the audit findings into downloadable reports instantly.
+- **Multiple Formats**: Export your code reviews as formatted PDFs, GitHub-ready Markdown, standalone HTML dashboards, or raw JSON payloads.
+
+### 🔒 100% Stateless & Private
+- **Zero Database Setup**: No Supabase, PostgreSQL, or SQLite required.
+- **Local Storage**: All data, including your Gemini API key and audit history, stays exclusively in your browser's local storage.
+- **Secure Processing**: The backend only serves as a transient processing pipeline and never stores repository data on disk permanently.
 
 ## Tech Stack
-- **Frontend**: React, TypeScript, Tailwind CSS, Vite
-- **Backend**: FastAPI, Python 3.12, GitPython, ReportLab
+- **Frontend**: React, TypeScript, Tailwind CSS, Vite, Recharts, Lucide Icons
+- **Backend**: FastAPI, Python 3.12, GitPython, ReportLab (for PDF exports)
+- **AI/LLM**: Google GenAI SDK (Gemini 2.5)
 
 ## Getting Started
 
