@@ -10,7 +10,8 @@ import {
   RefreshCw,
   Search,
   ChevronRight,
-  PlusCircle
+  PlusCircle,
+  Trash2
 } from 'lucide-react';
 import api from '../services/api';
 import { Repository, Analysis } from '../types';
@@ -28,6 +29,9 @@ export const Repositories: React.FC = () => {
   const [repoBranch, setRepoBranch] = useState('main');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Delete confirmation state
+  const [deleteTarget, setDeleteTarget] = useState<Repository | null>(null);
 
   const fetchRepositories = () => {
     try {
@@ -313,6 +317,21 @@ export const Repositories: React.FC = () => {
     });
   };
 
+  const handleDeleteRepo = (e: React.MouseEvent, repo: Repository) => {
+    e.stopPropagation();
+    setDeleteTarget(repo);
+  };
+
+  const confirmDelete = () => {
+    if (!deleteTarget) return;
+    const stored = localStorage.getItem('auditor_repositories');
+    const list = stored ? JSON.parse(stored) : [];
+    const filtered = list.filter((r: any) => r.id !== deleteTarget.id);
+    localStorage.setItem('auditor_repositories', JSON.stringify(filtered));
+    setDeleteTarget(null);
+    fetchRepositories();
+  };
+
   if (loading) {
     return (
       <div className="py-24 flex flex-col items-center justify-center gap-4">
@@ -430,6 +449,13 @@ export const Repositories: React.FC = () => {
                     >
                       <ChevronRight className="w-3.5 h-3.5" />
                     </button>
+                    <button 
+                      onClick={(e) => handleDeleteRepo(e, r)}
+                      className="p-2 rounded-lg bg-glass-bg hover:bg-red-500/15 border border-glass-border hover:border-red-500/30 text-gray-400 hover:text-red-400 transition-all"
+                      title="Remove repository"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -491,6 +517,41 @@ export const Repositories: React.FC = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deleteTarget && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6 z-50" onClick={() => setDeleteTarget(null)}>
+          <div className="w-full max-w-sm bg-slate-850 border border-red-500/20 rounded-2xl shadow-2xl p-6 glass-panel" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                <Trash2 className="w-5 h-5 text-red-400" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-gray-100">Remove Repository?</h3>
+                <p className="text-xs text-gray-500 mt-0.5">This will delete all local analysis history.</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/60 border border-glass-border rounded-xl px-4 py-3 mb-5">
+              <p className="text-sm font-semibold text-gray-200">{deleteTarget.name}</p>
+              <p className="text-xs text-gray-500 truncate mt-0.5">{deleteTarget.url}</p>
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDeleteTarget(null)}
+                className="flex-1 px-4 py-2.5 rounded-xl bg-glass-bg border border-glass-border text-gray-300 text-sm hover:bg-glass-hover transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="flex-1 px-4 py-2.5 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 font-semibold text-sm transition-all"
+              >
+                Remove
+              </button>
+            </div>
           </div>
         </div>
       )}
