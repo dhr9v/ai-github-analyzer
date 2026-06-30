@@ -160,7 +160,7 @@ export const Settings: React.FC = () => {
           </div>
           <p className="text-xs text-gray-550 leading-relaxed font-light">
             If you wish to scan private repositories owned by you or your organization, input a GitHub Personal Access Token (PAT). 
-            This token is saved securely in your database context and is never exposed.
+            This token is saved securely in your browser's local storage and is never sent to our servers except during the analysis request.
           </p>
 
           <div className="relative mt-2">
