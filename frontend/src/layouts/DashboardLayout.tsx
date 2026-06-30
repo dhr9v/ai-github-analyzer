@@ -153,7 +153,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           <div className="w-8 h-8 rounded-lg bg-slate-900 border border-glass-border flex items-center justify-center text-brand-blue">
             <Terminal className="w-4.5 h-4.5" />
           </div>
-          <span className="font-extrabold text-base tracking-tight text-white">AI Auditor</span>
+          <span className="font-extrabold text-base tracking-tight text-white">Seven AI</span>
         </div>
         <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-400 hover:text-white">
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -169,8 +169,8 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
               <Terminal className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="font-extrabold text-sm tracking-tight text-white leading-none mb-1">AI Auditor</h1>
-              <span className="text-[9px] text-brand-cyan font-mono tracking-widest font-bold uppercase block">stateless reviewer</span>
+              <h1 className="font-extrabold text-sm tracking-tight text-white leading-none mb-1">Seven AI</h1>
+              <span className="text-[9px] text-brand-cyan font-mono tracking-widest font-bold uppercase block">powered by ai</span>
             </div>
           </div>
 
@@ -314,7 +314,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             <div className="flex justify-between items-center border-b border-glass-border pb-3">
               <h3 className="font-bold text-lg text-white flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-brand-blue" />
-                How to Use AI Auditor
+                How to Use Seven AI
               </h3>
               <button onClick={() => setHelpOpen(false)} className="text-gray-400 hover:text-white">
                 <X className="w-5 h-5" />
